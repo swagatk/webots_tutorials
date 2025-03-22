@@ -1,0 +1,110 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/factory/containers/protos/WoodenBox.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/robots/gctronic/e-puck/protos/E-puck.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/Floor.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.3863266039679174 -0.3185198653933728 -0.865619344987393 4.381293529877305
+  position 0.06143805413444765 -1.10076911428666 1.4550221989868843
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+WoodenBox {
+  translation -0.143768 0.17786 0.05
+  size 0.1 0.1 0.1
+}
+WoodenBox {
+  translation 0.206501 -0.189241 0.05
+  name "wooden box(2)"
+  size 0.1 0.1 0.1
+}
+WoodenBox {
+  translation -0.295241 -0.300068 0.05
+  name "wooden box(1)"
+  size 0.1 0.1 0.1
+}
+E-puck {
+  controller "epuck_avoid_collision"
+}
+Floor {
+  size 1 1
+}
+Solid {
+  translation 0.149515197728159 0.17937518283198275 0.04917745075621394
+  rotation -0.3288673645088634 -0.5422286524839557 0.7731974812338878 -3.1337386602025785
+  children [
+    DEF ball Shape {
+      appearance PBRAppearance {
+        roughness 1
+        metalness 0
+      }
+      geometry DEF ball_geometry Sphere {
+        radius 0.05
+        subdivision 2
+      }
+    }
+  ]
+  boundingObject USE ball_geometry
+  physics Physics {
+  }
+}
+Solid {
+  translation -3.1973290330871466e-05 0.5024814615041077 0.04960859154368179
+  rotation -0.6440656309378497 0.001358124722793558 -0.7649690310998656 0.0059834833901345925
+  children [
+    DEF wall Shape {
+      appearance PBRAppearance {
+        baseColor 0.5 0.5 0.5
+        roughness 1
+        metalness 0
+      }
+      geometry DEF wall_geometry Box {
+        size 1 0.01 0.1
+      }
+    }
+  ]
+  name "wall_1"
+  boundingObject USE wall_geometry
+  physics Physics {
+  }
+}
+Solid {
+  translation 3.197329033087217e-05 -0.5024814615041077 0.049608591543681795
+  rotation 0.6440656309377009 -0.0013581247227914994 -0.7649690310999907 0.0059834833901337816
+  children [
+    USE wall
+  ]
+  name "wall_2"
+  boundingObject USE wall_geometry
+  physics Physics {
+  }
+}
+Solid {
+  translation 0.5022825210009573 3.086897198428902e-05 0.04960617893192432
+  rotation 0.0012789047887645168 0.0012730686094875405 0.9999983718481029 1.565691521367005
+  children [
+    USE wall
+  ]
+  name "wall_3"
+  boundingObject USE wall_geometry
+  physics Physics {
+  }
+}
+Solid {
+  translation -0.5022825210009573 -3.086897198427906e-05 0.049606178931924316
+  rotation -0.0012789047887652347 -0.001273068609488275 0.9999983718481029 1.565691521367005
+  children [
+    USE wall
+  ]
+  name "wall_4"
+  boundingObject USE wall_geometry
+  physics Physics {
+  }
+}

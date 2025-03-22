@@ -1,0 +1,124 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.3196158012982966 0.021153012318862418 0.9473110838738699 3.016374340934095
+  position 1.162685769342278 -0.30341634358339686 0.7134400352981073
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+}
+Robot {
+  children [
+    DEF Body Pose {
+      translation 0 0 0.0415
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0 0.045 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+        PositionSensor {
+          name "wheel_enc_1"
+        }
+      ]
+      endPoint Solid {
+        translation 0 0.045 0.025
+        rotation 1 0 0 1.57
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 1 0 0
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "wheel_1"
+        boundingObject USE wheel
+        physics DEF wheel_ph Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0 -0.045 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor_2"
+        }
+        PositionSensor {
+          name "wheel_enc_2"
+        }
+      ]
+      endPoint Solid {
+        translation 0 -0.045 0.025
+        rotation 1 0 0 1.57
+        children [
+          USE wheel
+        ]
+        name "wheel_2"
+        boundingObject USE wheel
+        physics USE wheel_ph
+      }
+    }
+    Solid {
+      translation 0.0415 0.015 0.07
+      children [
+        DEF eye Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "eye_1"
+    }
+    Solid {
+      translation 0.0415 -0.015 0.07
+      children [
+        USE eye
+      ]
+      name "eye_2"
+    }
+  ]
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "odeometry_calculation"
+}
