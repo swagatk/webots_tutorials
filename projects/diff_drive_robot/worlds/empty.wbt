@@ -7,17 +7,43 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.3196158012982966 0.021153012318862418 0.9473110838738699 3.016374340934095
-  position 1.162685769342278 -0.30341634358339686 0.7134400352981073
+  orientation -0.41209565340584303 -0.05342150436974051 0.9095731500626462 3.37633840810016
+  position 0.6151372360707592 0.05981260874604931 0.44459327467643595
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
 RectangleArena {
+  translation -0.00563652 -0.00621327 0
 }
 Robot {
   children [
+    DistanceSensor {
+      translation 0.04 0.015 0.02
+      rotation 0 0 1 0.26
+      children [
+        DEF dist_sensor Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 0
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "ps_0"
+    }
+    DistanceSensor {
+      translation 0.04 -0.015 0.02
+      rotation 0 0 1 -0.26
+      children [
+        USE dist_sensor
+      ]
+      name "ps_1"
+    }
     DEF Body Pose {
       translation 0 0 0.0415
       children [
@@ -120,5 +146,5 @@ Robot {
   boundingObject USE Body
   physics Physics {
   }
-  controller "odeometry_calculation"
+  controller "avoid_obstacle"
 }

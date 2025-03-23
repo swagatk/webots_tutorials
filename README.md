@@ -7,7 +7,7 @@ Webots tutorial codes
     - Creating simple motion controller
     - Estimating robot pose from wheel encoders
 - Creating a 4-wheeled Differential Drive robot
-    - [Webots tutorial 6](https://cyberbotics.com/doc/guide/tutorial-6-4-wheels-robot)
+    - Credits: [Webots](https://cyberbotics.com/doc/guide/tutorial-6-4-wheels-robot)
     - creating robot body
     - adding proximity sensors on the front side
     - Writing an obstacle avoidance controller
